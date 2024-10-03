@@ -1,0 +1,33 @@
+import Image from 'next/image'
+import React from 'react'
+
+const NewPost = () => {
+  return (
+    <div className="p-4 bg-white rounded-lg flex gap-4 justify-between text-sm">
+      <Image
+        src="https://images.pexels.com/photos/27658364/pexels-photo-27658364/free-photo-of-a-black-and-white-photo-of-a-bridge-and-cars.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+        alt=""
+        className="w-12 h-12 rounded-full object-cover"
+        width={48}
+        height={48}
+      />
+      <div className="flex-1 p-2">
+        <div className="flex flex-col gap-4">
+          <input
+            placeholder="Type the post title here"
+            className="flex-1 bg-slate-100 rounded-lg p-2"
+          />
+          <textarea
+            name=""
+            id=""
+            placeholder="Type your post here"
+            className="flex-1 bg-slate-100 rounded-lg p-2"
+          />
+        </div>
+        <div className=""></div>
+      </div>
+    </div>
+  )
+}
+
+export default NewPost
