@@ -1,12 +1,8 @@
 const baseURL = 'https://jsonplaceholder.typicode.com'
 
-const headers = {
-  'Content-Type': 'application/json'
-}
-
 const fetchData = async (endpoint) => {
   try {
-    const response = await fetch(`${baseURL}/${endpoint}`, { headers })
+    const response = await fetch(`${baseURL}/${endpoint}`)
     if (!response.ok) {
       throw new Error(`Failed to fetch data: ${response.statusText}`)
     }

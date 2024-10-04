@@ -12,19 +12,20 @@ const NewPost = () => {
         height={48}
       />
       <div className="flex-1 p-2">
-        <div className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4">
           <input
+            required
+            name="postTitle"
             placeholder="Type the post title here"
             className="flex-1 bg-slate-100 rounded-lg p-2"
           />
           <textarea
-            name=""
-            id=""
-            placeholder="Type your post here"
+            required
+            name="postContent"
+            placeholder="Type your post here and press Enter"
             className="flex-1 bg-slate-100 rounded-lg p-2"
           />
-        </div>
-        <div className=""></div>
+        </form>
       </div>
     </div>
   )
