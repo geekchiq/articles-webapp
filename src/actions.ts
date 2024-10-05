@@ -56,15 +56,11 @@ export const logout = async () => {
   redirect('/login')
 }
 
-export const getPosts = async (keyword: string) => {
+export const getPosts = async (keyword: string): Promise<any> => {
   const command = `posts${
     keyword.length > 0 ? '?title=' + keyword.toLowerCase() : ''
   }`
-  console.log('command', command)
   const data = await fetchData(command)
-
-  if (!data) return []
-
   return data
 }
 
