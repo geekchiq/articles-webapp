@@ -1,11 +1,11 @@
 'use client'
 
-import React from 'react'
+import React, { useActionState } from 'react'
+
 import { login } from '@/actions'
-import { useFormState } from 'react-dom'
 
 const Login = () => {
-  const [state, formAction] = useFormState<any, FormData>(login, undefined)
+  const [state, formAction] = useActionState<any, FormData>(login, undefined)
 
   return (
     <div className="flex items-center justify-center h-[calc(100vh-96px)]">
@@ -33,7 +33,9 @@ const Login = () => {
               placeholder="Password"
               className="flex-1 bg-slate-100 rounded-lg p-2"
             />
-            <button>Submit</button>
+            <button className="w-[20%] py-2 rounded-lg bg-pink-700 text-white self-center">
+              Submit
+            </button>
           </form>
         </div>
       </div>

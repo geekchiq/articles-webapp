@@ -1,16 +1,32 @@
-import PostCard from './PostCard'
-import { PostType } from '@/types/postType'
-import React from 'react'
-import { getPosts } from '@/app/services/api'
+'use client'
 
-const Feed = async () => {
-  const posts = await getPosts()
+import React, { useState } from 'react'
+
+import PostFeed from './PostFeed'
+import SearchBar from './SearchBar'
+
+const Feed = () => {
+  const [keyword, setKeyword] = useState('')
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const searchInput = formData.get('searchInput') as string
+    console.log('searchInput', searchInput)
+
+    if (searchInput) {
+      setKeyword(searchInput)
+    }
+  }
+
   return (
-    <div className="flex flex-col gap-4">
-      {posts.map((post: PostType, i: number) => (
-        <PostCard key={i} post={post} />
-      ))}
-    </div>
+    <>
+      <SearchBar
+        placeholder="Type search title here"
+        onSubmit={(value) => handleSearch(value)}
+      />
+      <PostFeed searchQuery={keyword} />
+    </>
   )
 }
 

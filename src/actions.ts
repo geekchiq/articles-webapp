@@ -5,6 +5,7 @@ import {
   defaultSession,
   sessionOptions
 } from '@/types/sessionData'
+import { callApi, fetchData } from '@/app/services/api'
 
 import { cookies } from 'next/headers'
 import { getIronSession } from 'iron-session'
@@ -55,7 +56,34 @@ export const logout = async () => {
   redirect('/login')
 }
 
-export const addPost = async (formData: FormData) => {}
+export const getPosts = async (keyword: string) => {
+  const command = `posts${
+    keyword.length > 0 ? '?title=' + keyword.toLowerCase() : ''
+  }`
+  console.log('command', command)
+  const data = await fetchData(command)
+
+  if (!data) return []
+
+  return data
+}
+
+export const addPost = async (formData: FormData) => {
+  const session = await getSession()
+
+  const title = formData.get('postTitle') as string
+  const body = formData.get('postContent') as string
+  const userId = session.userId
+
+  const payload = {
+    title,
+    body,
+    userId
+  }
+
+  return await callApi('posts', 'POST', payload)
+}
+
 export const editPost = async (formData: FormData) => {}
 
 export const deletePost = async (formData: FormData) => {}

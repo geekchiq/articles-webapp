@@ -1,17 +1,17 @@
-import { PostType } from '@/types/postType'
+import Link from 'next/link'
+import { PostProps } from '@/types/postTypes'
 import React from 'react'
-
-interface PostProps {
-  post?: PostType
-}
 
 const PostCard = ({ post }: PostProps) => {
   return (
     post && (
-      <div className="flex flex-col gap-4 bg-white p-4 shadow-md rounded-lg">
+      <Link
+        href="/"
+        className="w-full flex flex-col gap-4 bg-white p-3 shadow-md rounded-lg lg:w-[45%]"
+      >
         <p className="text-md capitalize">{post.title}</p>
         <p className="text-sm">{post.body}</p>
-      </div>
+      </Link>
     )
   )
 }
