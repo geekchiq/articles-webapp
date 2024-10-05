@@ -6,7 +6,7 @@ const NewPost = () => {
   return (
     <div className="p-4 bg-white rounded-lg flex gap-4 justify-between text-sm">
       <Image
-        src="https://images.pexels.com/photos/27658364/pexels-photo-27658364/free-photo-of-a-black-and-white-photo-of-a-bridge-and-cars.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+        src="/geekchiq.png"
         alt=""
         className="w-12 h-12 rounded-full object-cover"
         width={48}

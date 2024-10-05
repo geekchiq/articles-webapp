@@ -83,3 +83,15 @@ export const addPost = async (formData: FormData) => {
 export const editPost = async (formData: FormData) => {}
 
 export const deletePost = async (formData: FormData) => {}
+
+export const getUsers = async (id?: number): Promise<any> => {
+  const command = `users${id ? '?id =' : ''}`
+  console.log('command', command)
+  let data
+  try {
+    data = await fetchData(command)
+  } catch (err) {
+    console.log('getUsers', err)
+  }
+  return data
+}
