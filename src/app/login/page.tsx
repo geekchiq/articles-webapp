@@ -10,7 +10,7 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center h-[calc(100vh-96px)]">
-      <div className="p-4 bg-white rounded-md w-[90%] h-[50%] items-center justify-center">
+      <div className="p-4 bg-white rounded-md w-[90%] md:w-[50%] h-[50%] items-center justify-center">
         <div className="flex flex-col gap-8 justify-between">
           <span className="font-bold text-xl text-pink-700 text-center">
             Login
