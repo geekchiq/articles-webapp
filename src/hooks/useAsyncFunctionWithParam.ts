@@ -6,7 +6,7 @@ import { ParamType } from '@/types/paramType'
 
 function useAsyncFunctionWithParam<T>(
   // eslint-disable-next-line no-unused-vars
-  asyncFunction: (param: ParamType) => Promise<T>,
+  asyncFunction: (keyword: string) => Promise<T>,
   param: ParamType
 ) {
   const [loading, setLoading] = useState<boolean>(true)
@@ -17,7 +17,7 @@ function useAsyncFunctionWithParam<T>(
     setLoading(true)
     setError(null)
     try {
-      const response = await asyncFunction(param)
+      const response = await asyncFunction(param.toString())
       setData(response)
     } catch (err) {
       setError(err as Error)

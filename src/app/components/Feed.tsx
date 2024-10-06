@@ -12,16 +12,22 @@ import useAsyncFunctionWithParam from '@/hooks/useAsyncFunctionWithParam'
 import usePostsStore from '@/store/usePostsStore'
 import useSession from '@/hooks/useSession'
 
+type PostsDataType = {
+  post: PostType[]
+}
+
+const usePostsDataStore = usePostsStore<PostsDataType>()
+
 const Feed = () => {
   const [keyword, setKeyword] = useState('')
-  const [post, setPost] = useState()
+  const [post, setPost] = useState<PostType | null>(null)
 
   const { session } = useSession()
   const { data, loading, error, refetch } = useAsyncFunctionWithParam(
     getPosts,
     keyword
   )
-  const { posts, addPost, updatePost } = usePostsStore()
+  const { posts, addPost, updatePost } = usePostsDataStore()
 
   // just for demonstration, in the beginner the posts are coming from the api.
   // but when you create a new post it will be stored in state management
@@ -46,19 +52,16 @@ const Feed = () => {
     const postInput = formData.get('postContent') as string
 
     if (idInput) {
-      updatePost(idInput, titleInput, postInput)
+      updatePost(parseInt(idInput), titleInput, postInput)
       refetch()
     } else {
-      const newPost = {
-        userId: session?.userId,
+      const userId = session?.userId || 100
+      addPost({
+        userId: userId,
         id: posts.length + 1,
         title: titleInput,
         body: postInput
-      }
-
-      console.log('newPost', newPost)
-
-      addPost(newPost)
+      })
     }
   }
 

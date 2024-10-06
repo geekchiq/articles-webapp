@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { PostType } from '@/types/postTypes'
 
 interface NewPostProp {
-  post?: PostType
+  post?: PostType | null
   // eslint-disable-next-line no-unused-vars
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void
 }
@@ -16,9 +16,11 @@ const NewPost = ({ post, onSubmit }: NewPostProp) => {
   const [content, setContent] = useState(post?.body || '')
 
   useEffect(() => {
-    setId(post?.id)
-    setTitle(post?.title)
-    setContent(post?.body)
+    if (post) {
+      setId(post.id)
+      setTitle(post.title)
+      setContent(post.body)
+    }
   }, [post])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

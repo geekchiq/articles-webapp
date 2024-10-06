@@ -7,6 +7,7 @@ import {
 } from '@/types/sessionData'
 import { callApi, fetchData } from '@/app/services/api'
 
+import { ParamType } from '@/types/paramType'
 import { cookies } from 'next/headers'
 import { getIronSession } from 'iron-session'
 import { redirect } from 'next/navigation'
