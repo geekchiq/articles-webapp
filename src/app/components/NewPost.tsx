@@ -44,11 +44,14 @@ const NewPost = ({ post, onSubmit }: NewPostProp) => {
           <input type="hidden" value={id} name="id" />
           <input
             required
+            type="text"
             name="postTitle"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Type the post title here"
             className="flex-1 bg-slate-100 rounded-lg p-2"
+            minLength={10}
+            maxLength={100}
           />
           <textarea
             required
@@ -57,6 +60,8 @@ const NewPost = ({ post, onSubmit }: NewPostProp) => {
             onChange={(e) => setContent(e.target.value)}
             placeholder="Type your post here and press Enter"
             className="flex-1  bg-slate-100 rounded-lg p-2"
+            minLength={10}
+            maxLength={1000}
           />
           <Button label={'Post'} />
         </form>

@@ -14,15 +14,26 @@ const NavBar = async () => {
           Home
         </Link>
       </div>
-      <div className="hidden md:flex w-[60%]">
-        {session.isLoggedIn && <Link href="/profiles">Profiles</Link>}
+      <div className="hidden md:flex w-[60%] gap-4">
+        {session.isLoggedIn && (
+          <Link className="text-pink-700 hover:text-pink-900" href="/profiles">
+            | Profiles |
+          </Link>
+        )}
+        {session.isLoggedIn && (
+          <Link className="text-pink-700 hover:text-pink-900" href="/">
+            | Posts |
+          </Link>
+        )}
       </div>
       <div className="w-[20%] flex items-center gap-4 xl:gap-8 justify-end">
         {session.isLoggedIn && (
           <div className="hidden md:flex lg:flex w-full justify-between">
             <p className="capitalize">Hello, {session.username}</p>
             <form className="" action={logout}>
-              <button>Logout</button>
+              <button className="text-pink-700 hover:text-pink-900">
+                Logout
+              </button>
             </form>
           </div>
         )}
