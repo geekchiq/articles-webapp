@@ -3,6 +3,7 @@
   "rules": {
     "react/prop-types": "off",
     "no-unused-vars": "warn",
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+    "no-undef": "warn"
   }
 }
