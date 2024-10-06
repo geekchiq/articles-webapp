@@ -4,7 +4,10 @@ import { useCallback, useEffect, useState } from 'react'
 
 import { ParamType } from '@/types/paramType'
 
-function useAsyncFunction<T>(asyncFunction: () => Promise<T>) {
+function useAsyncFunctionWithParam<T>(
+  asyncFunction: (param: ParamType) => Promise<T>,
+  param: ParamType
+) {
   const [loading, setLoading] = useState<boolean>(true)
   const [data, setData] = useState<T | null>(null)
   const [error, setError] = useState<Error | null>(null)
@@ -13,14 +16,14 @@ function useAsyncFunction<T>(asyncFunction: () => Promise<T>) {
     setLoading(true)
     setError(null)
     try {
-      const response = await asyncFunction()
+      const response = await asyncFunction(param)
       setData(response)
     } catch (err) {
       setError(err as Error)
     } finally {
       setLoading(false)
     }
-  }, [asyncFunction])
+  }, [asyncFunction, param])
 
   useEffect(() => {
     execute()
@@ -29,4 +32,4 @@ function useAsyncFunction<T>(asyncFunction: () => Promise<T>) {
   return { data, loading, error, refetch: execute }
 }
 
-export default useAsyncFunction
+export default useAsyncFunctionWithParam

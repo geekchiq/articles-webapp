@@ -3,16 +3,30 @@
 import React, { useState } from 'react'
 
 import AlertDialog from './AlertDialog'
+import NewPost from '@/app/components/NewPost'
 import PostFeed from './PostFeed'
+import { PostType } from '@/types/postTypes'
 import SearchBar from './SearchBar'
 import { getPosts } from '@/actions'
-import useAsyncFunction from '@/hooks/useAsyncFunction'
+import useAsyncFunctionWithParam from '@/hooks/useAsyncFunctionWithParam'
+import usePostsStore from '@/store/usePostsStore'
+import useSession from '@/hooks/useSession'
 
 const Feed = () => {
   const [keyword, setKeyword] = useState('')
+  const [post, setPost] = useState()
 
-  const { data, loading, error } = useAsyncFunction(getPosts, keyword)
-  const posts = data || []
+  const { session } = useSession()
+  const { data, loading, error, refetch } = useAsyncFunctionWithParam(
+    getPosts,
+    keyword
+  )
+  const { posts, addPost, updatePost } = usePostsStore()
+
+  // just for demonstration, in the beginner the posts are coming from the api.
+  // but when you create a new post it will be stored in state management
+  // since we  do not have a connection to the db
+  const allPosts = posts.length > 0 ? posts : data || []
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -24,8 +38,37 @@ const Feed = () => {
     }
   }
 
+  const handleSubmitPost = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const idInput = formData.get('id') as string
+    const titleInput = formData.get('postTitle') as string
+    const postInput = formData.get('postContent') as string
+
+    if (idInput) {
+      updatePost(idInput, titleInput, postInput)
+      refetch()
+    } else {
+      const newPost = {
+        userId: session?.userId,
+        id: posts.length + 1,
+        title: titleInput,
+        body: postInput
+      }
+
+      console.log('newPost', newPost)
+
+      addPost(newPost)
+    }
+  }
+
+  const handleButtonClick = (postParam: PostType) => {
+    setPost(postParam)
+  }
+
   return (
     <>
+      <NewPost post={post} onSubmit={(value) => handleSubmitPost(value)} />
       <SearchBar
         placeholder="Type search title here"
         onSubmit={(value) => handleSearch(value)}
@@ -33,7 +76,9 @@ const Feed = () => {
       {error && (
         <AlertDialog title="An Error Occured" message={error.message} />
       )}
-      {!loading && <PostFeed posts={posts} />}
+      {!loading && (
+        <PostFeed postsParam={allPosts} handleButtonClick={handleButtonClick} />
+      )}
     </>
   )
 }

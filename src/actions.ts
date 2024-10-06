@@ -20,6 +20,7 @@ export const getSession = async () => {
   }
   return session
 }
+
 export const login = async (
   prevState: { error: undefined | string },
   formData: FormData
@@ -80,7 +81,23 @@ export const addPost = async (formData: FormData) => {
   return await callApi('posts', 'POST', payload)
 }
 
-export const editPost = async (formData: FormData) => {}
+export const editPost = async (formData: FormData) => {
+  const session = await getSession()
+
+  const id = formData.get('id') as string
+  const title = formData.get('postTitle') as string
+  const body = formData.get('postContent') as string
+  const userId = session.userId
+
+  const payload = {
+    id,
+    title,
+    body,
+    userId
+  }
+
+  return await callApi('posts', 'PUT', payload)
+}
 
 export const deletePost = async (formData: FormData) => {}
 

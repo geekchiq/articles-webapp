@@ -1,8 +1,32 @@
-import Image from 'next/image'
-import React from 'react'
-import { addPost } from '@/actions'
+import React, { useEffect, useState } from 'react'
 
-const NewPost = () => {
+import Image from 'next/image'
+import { PostType } from '@/types/postTypes'
+
+//import { addPost } from '@/actions'
+interface NewPostProp {
+  post?: PostType
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void
+}
+
+const NewPost = ({ post, onSubmit }: NewPostProp) => {
+  const [id, setId] = useState(post?.id || '')
+  const [title, setTitle] = useState(post?.title || '')
+  const [content, setContent] = useState(post?.body || '')
+
+  useEffect(() => {
+    setId(post?.id)
+    setTitle(post?.title)
+    setContent(post?.body)
+  }, [post])
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    setId('')
+    setTitle('')
+    setContent('')
+    onSubmit(e)
+  }
+
   return (
     <div className="p-4 bg-white rounded-lg flex gap-4 justify-between text-sm">
       <Image
@@ -13,18 +37,23 @@ const NewPost = () => {
         height={48}
       />
       <div className="flex-1 p-2">
-        <form action={addPost} className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <input type="hidden" value={id} name="id" />
           <input
             required
             name="postTitle"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             placeholder="Type the post title here"
             className="flex-1 bg-slate-100 rounded-lg p-2"
           />
           <textarea
             required
             name="postContent"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
             placeholder="Type your post here and press Enter"
-            className="flex-1 bg-slate-100 rounded-lg p-2"
+            className="flex-1  bg-slate-100 rounded-lg p-2"
           />
           <button className="w-[20%] py-2 rounded-lg bg-pink-700 text-white self-end">
             Post
