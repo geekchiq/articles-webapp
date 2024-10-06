@@ -13,13 +13,12 @@ const PostFeed = ({
   // eslint-disable-next-line no-unused-vars
   handleButtonClick: (post: PostType) => void
 }) => {
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState<PostType[] | []>([])
   const { session } = useSession()
 
   useEffect(() => {
     if (posts !== postsParam) {
-      const newPosts = postsParam
-      setPosts([...newPosts])
+      setPosts(postsParam)
     }
   }, [postsParam])
 
