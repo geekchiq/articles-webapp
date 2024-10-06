@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
+import Button from './Button'
 import Image from 'next/image'
 import { PostType } from '@/types/postTypes'
 
-//import { addPost } from '@/actions'
 interface NewPostProp {
   post?: PostType
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void
@@ -55,9 +55,7 @@ const NewPost = ({ post, onSubmit }: NewPostProp) => {
             placeholder="Type your post here and press Enter"
             className="flex-1  bg-slate-100 rounded-lg p-2"
           />
-          <button className="w-[20%] py-2 rounded-lg bg-pink-700 text-white self-end">
-            Post
-          </button>
+          <Button label={'Post'} />
         </form>
       </div>
     </div>

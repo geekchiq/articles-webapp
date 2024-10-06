@@ -35,11 +35,11 @@ const Menu = ({ session }: SessionProp) => {
       </div>
       {isOpen && (
         <div className="absolute left-0 top-24 w-full h-[calc(100vh-96px)] bg-white flex flex-col items-center justify-center gap-8 font-medium text-xl z-10">
-          <Link href="/" className="font-bold text-xl text-pink-700">
-            Home
+          <Link href="/Profiles" className="font-bold text-xl text-pink-700">
+            Profiles
           </Link>
           <Link href="/" className="font-bold text-xl text-pink-700">
-            Settings
+            Posts
           </Link>
           <Link href="/" className="font-bold text-xl text-pink-700">
             {session.isLoggedIn ? 'Logout' : 'Login'}

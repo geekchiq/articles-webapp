@@ -2,6 +2,7 @@
 
 import React, { useActionState } from 'react'
 
+import Button from '../components/Button'
 import { login } from '@/actions'
 
 const Login = () => {
@@ -33,9 +34,7 @@ const Login = () => {
               placeholder="Password"
               className="flex-1 bg-slate-100 rounded-lg p-2"
             />
-            <button className="w-[20%] py-2 rounded-lg bg-pink-700 text-white self-center">
-              Submit
-            </button>
+            <Button label="Login" />
           </form>
         </div>
       </div>
