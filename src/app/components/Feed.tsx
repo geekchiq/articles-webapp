@@ -16,8 +16,6 @@ type PostsDataType = {
   post: PostType[]
 }
 
-const usePostsDataStore = usePostsStore<PostsDataType>()
-
 const Feed = () => {
   const [keyword, setKeyword] = useState('')
   const [post, setPost] = useState<PostType | null>(null)
@@ -27,6 +25,7 @@ const Feed = () => {
     getPosts,
     keyword
   )
+  const usePostsDataStore = usePostsStore<PostsDataType>()
   const { posts, addPost, updatePost } = usePostsDataStore()
 
   // just for demonstration, in the beginner the posts are coming from the api.
