@@ -10,6 +10,7 @@ const PostFeed = ({
   handleButtonClick
 }: {
   postsParam: PostType[]
+  // eslint-disable-next-line no-unused-vars
   handleButtonClick: (post: PostType) => void
 }) => {
   const [posts, setPosts] = useState([])
@@ -25,7 +26,7 @@ const PostFeed = ({
   return (
     <div className="flex gap-x-4 gap-y-8 justify-between flex-wrap">
       {posts?.length > 0 ? (
-        posts.map((post: PostType, i: number) => (
+        posts.map((post: PostType) => (
           <PostCard
             key={post.id}
             post={post}

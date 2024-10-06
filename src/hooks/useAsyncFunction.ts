@@ -2,8 +2,6 @@
 
 import { useCallback, useEffect, useState } from 'react'
 
-import { ParamType } from '@/types/paramType'
-
 function useAsyncFunction<T>(asyncFunction: () => Promise<T>) {
   const [loading, setLoading] = useState<boolean>(true)
   const [data, setData] = useState<T | null>(null)

@@ -6,6 +6,7 @@ import { PostType } from '@/types/postTypes'
 
 interface NewPostProp {
   post?: PostType
+  // eslint-disable-next-line no-unused-vars
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void
 }
 

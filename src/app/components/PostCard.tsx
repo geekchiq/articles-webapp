@@ -4,6 +4,7 @@ import React from 'react'
 interface PostProps {
   post: PostType
   isCurrentUser: boolean
+  // eslint-disable-next-line no-unused-vars
   onButtonClick: (post: PostType) => void
 }
 

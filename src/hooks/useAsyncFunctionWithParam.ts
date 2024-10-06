@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { ParamType } from '@/types/paramType'
 
 function useAsyncFunctionWithParam<T>(
+  // eslint-disable-next-line no-unused-vars
   asyncFunction: (param: ParamType) => Promise<T>,
   param: ParamType
 ) {

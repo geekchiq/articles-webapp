@@ -5,6 +5,7 @@ import React from 'react'
 
 interface SearchFormProp {
   placeholder: string
+  // eslint-disable-next-line no-unused-vars
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void
 }
 

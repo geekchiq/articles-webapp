@@ -99,8 +99,6 @@ export const editPost = async (formData: FormData) => {
   return await callApi('posts', 'PUT', payload)
 }
 
-export const deletePost = async (formData: FormData) => {}
-
 export const getUsers = async (id?: number): Promise<any> => {
   const command = `users${id ? '?id =' : ''}`
   console.log('command', command)

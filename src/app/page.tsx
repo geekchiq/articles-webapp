@@ -2,7 +2,7 @@ import Feed from '@/app/components/Feed'
 import { getSession } from '@/actions'
 import { redirect } from 'next/navigation'
 
-const Homepage = async () => {
+const HomePage = async () => {
   const session = await getSession()
 
   if (!session.isLoggedIn) {
@@ -20,4 +20,4 @@ const Homepage = async () => {
   )
 }
 
-export default Homepage
+export default HomePage
