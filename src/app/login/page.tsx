@@ -1,12 +1,12 @@
 'use client'
 
-import React, { useActionState } from 'react'
-
 import Button from '../components/Button'
+import React from 'react'
 import { login } from '@/actions'
+import { useFormState } from 'react-dom'
 
 const Login = () => {
-  const [state, formAction] = useActionState<any, FormData>(login, undefined)
+  const [state, formAction] = useFormState<any, FormData>(login, undefined)
 
   return (
     <div className="flex items-center justify-center h-[calc(100vh-96px)]">
